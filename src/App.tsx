@@ -1,7 +1,7 @@
 import { FC, useEffect, useMemo, useRef, useState } from "react";
 
 /**
- * Canvas Interactivo — Mapa Descriptivo del Cliente (Implementadores del Sector Público)
+ * Canvas Interactivo — Mapa Descriptivo del Cliente (Implementadores del Sector Privado)
  * Diseño premium (inspirado en IDEO / Stanford d.school): claridad, foco, y flujo sin fricción.
  *
  * ✔️ Sin dependencias externas. Tailwind utility classes para estilos.
@@ -42,84 +42,84 @@ const BLOCKS: readonly Block[] = [
     numero: "01.",
     titulo: "Barreras actuales",
     pregunta:
-      "¿Qué procesos internos, burocracia o requisitos regulatorios están dificultando hoy la ejecución de proyectos de modernización digital en su ministerio o entidad?",
+      "¿Qué procesos internos (ciclos de aprobación, sistemas legados, compliance) o limitaciones presupuestales están frenando hoy la adopción de nuevas arquitecturas tecnológicas en su organización?",
   },
   {
     id: "b2",
     numero: "02.",
     titulo: "Prioridades estratégicas",
     pregunta:
-      "¿Qué capacidades técnicas y de gestión (automatización, ciberseguridad, interoperabilidad, analítica) son críticas para garantizar el éxito de estas iniciativas en el mediano y largo plazo?",
+      "¿Qué capacidades técnicas (infraestructura como código, observabilidad, resiliencia, seguridad cloud) necesita el equipo de TI para sostener y escalar la transformación digital?",
   },
   {
     id: "b3",
     numero: "03.",
     titulo: "Intereses profesionales",
     pregunta:
-      "¿Qué especializaciones tecnológicas (cloud, DevOps, seguridad de la información, arquitectura de datos) considera prioritarias para fortalecer a su equipo en el marco de estos proyectos?",
+      "¿Qué áreas de especialización (microservicios, contenedores, automatización, IA operativa, analítica avanzada) son prioritarias para fortalecer el desarrollo de su equipo?",
   },
   {
     id: "b4",
     numero: "04.",
     titulo: "Riesgos percibidos",
     pregunta:
-      "¿Qué riesgos operativos o de seguridad (downtime, incidentes críticos, vulnerabilidades, brechas de cumplimiento) generan mayor preocupación al implementar estas iniciativas?",
+      "¿Qué riesgos (pérdida de datos, interrupciones, brechas de seguridad, vendor lock-in, sobrecostos) generan mayor cautela al desplegar soluciones de mediano y largo plazo?",
   },
   {
     id: "b5",
     numero: "05.",
     titulo: "Visión a futuro",
     pregunta:
-      "¿Cómo imagina que deberían funcionar la arquitectura tecnológica y los procesos de TI de su dependencia una vez consolidadas estas transformaciones?",
+      "¿Cómo imagina que debería funcionar el área de TI en 3–5 años para garantizar agilidad, estabilidad y escalabilidad después de estas transformaciones?",
   },
   {
     id: "b6",
     numero: "06.",
     titulo: "Incentivos y alineación",
     pregunta:
-      "¿Qué incentivos o apoyos (recursos presupuestales, certificaciones, formación especializada, reconocimiento institucional) motivarían más a su equipo para comprometerse plenamente con estas iniciativas?",
+      "¿Qué reconocimientos o beneficios (KPIs de despliegue continuo, reducción de incidentes, certificaciones técnicas, productividad de equipos) reforzarían el compromiso de su unidad con estas iniciativas?",
   },
   {
     id: "b7",
     numero: "07.",
     titulo: "Red de influencia",
     pregunta:
-      "¿Qué comunidades técnicas internas (equipos de arquitectura, comités de seguridad) o externas (foros de CIOs, organismos multilaterales, asociaciones sectoriales) influyen más en sus decisiones de implementación?",
+      "¿Qué comunidades técnicas internas (comités de arquitectura, foros DevOps) o externas (Oracle User Groups, conferencias de cloud, asociaciones sectoriales) influyen más en sus decisiones de diseño e implementación?",
   },
   {
     id: "b8",
     numero: "08.",
     titulo: "Proveedores actuales",
     pregunta:
-      "¿Qué proveedores o consultoras tecnológicas (AWS, Oracle, Microsoft, Red Hat, firmas locales) han sido referencia o apoyo en proyectos similares y cómo evalúa su desempeño?",
+      "¿Qué proveedores tecnológicos o integradores (Oracle, Red Hat, AWS, Azure, Microsoft, firmas locales) han demostrado valor en proyectos similares y cómo se percibe su aporte?",
   },
   {
     id: "b9",
     numero: "09.",
     titulo: "Madurez digital",
     pregunta:
-      "¿Cómo evaluaría hoy el nivel de madurez digital de su dependencia en términos de adopción cloud, prácticas de DevOps, automatización de procesos y ciberseguridad?",
+      "¿Cómo se evalúa actualmente el nivel de madurez digital de la organización en prácticas DevOps (CI/CD, testing automatizado, despliegue continuo, FinOps) y en adopción multicloud?",
   },
   {
     id: "b10",
     numero: "10.",
     titulo: "Motivadores clave",
     pregunta:
-      "¿Qué factores (resiliencia operativa, continuidad de servicios críticos, cumplimiento normativo, eficiencia en costos) son los que más le impulsan a liderar y sostener estas transformaciones?",
+      "¿Qué beneficios (mayor agilidad de entrega, estabilidad de servicios, reducción de incidentes críticos, ahorro de costos, productividad de desarrolladores) motivan más a su equipo para acelerar estas iniciativas?",
   },
   {
     id: "b11",
     numero: "11.",
     titulo: "Criterios de éxito",
     pregunta:
-      "¿Qué mejoras concretas (aumento de uptime, despliegues más rápidos, reducción de TCO, seguridad reforzada) necesita evidenciar para considerar exitoso un proyecto?",
+      "¿Qué mejoras tangibles (menos fallos en producción, tiempos de recuperación más cortos, mayor velocidad de releases, reducción de TCO) deben evidenciar para considerar exitosos los proyectos?",
   },
   {
     id: "b12",
     numero: "12.",
     titulo: "Lecciones previas",
     pregunta:
-      "¿Qué errores o dificultades de proyectos anteriores (migraciones inconclusas, fallos de integración, sobrecostos, falta de soporte post-implementación) quiere evitar en esta nueva etapa?",
+      "¿Qué errores de proyectos anteriores (despliegues manuales, falta de rollback, integraciones fallidas, configuraciones dispersas) buscan evitar para garantizar el éxito en esta nueva etapa?",
   },
 ] as const;
 
@@ -141,7 +141,7 @@ function buildTXTContent(answers: Answers): string {
   );
   const progress = Math.round((filled / total) * 100);
   const header = [
-    "🗺️ Mapa Descriptivo del Cliente – Implementadores del Sector Público",
+    "🗺️ Mapa Descriptivo del Cliente – Implementadores del Sector Privado",
     `Progreso: ${filled}/${total} (${progress}%)`,
     "",
   ].join("\n");
@@ -282,7 +282,7 @@ const CanvasDecisoresPublico: FC = () => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "canvas_implementadores_sector_publico.txt";
+    a.download = "canvas_implementadores_sector_privado.txt";
     a.click();
     URL.revokeObjectURL(url);
   };
@@ -343,11 +343,11 @@ const CanvasDecisoresPublico: FC = () => {
             <div>
               <h1 className="text-lg sm:text-xl font-semibold tracking-tight">
                 Mapa Descriptivo del Cliente – Implementadores del Sector
-                Público
+                Privado
               </h1>
               <p className="text-xs/5 text-white/60">
-                Stakeholders: CIOs, Directores de Tecnología en Ministerios y
-                Agencias, CISOs y responsables de seguridad de la información
+                Stakeholders: Directores de Arquitectura, líderes DevOps,
+                equipos de Infraestructura y SRE
               </p>
             </div>
           </div>
@@ -496,7 +496,7 @@ const CanvasDecisoresPublico: FC = () => {
       <div className="pb-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <p className="text-xs text-white/40">
-            Canvas · Implementadores del Sector Público · ©{" "}
+            Canvas · Implementadores del Sector Privado · ©{" "}
             {new Date().getFullYear()}
           </p>
         </div>
